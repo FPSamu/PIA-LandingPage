@@ -6,6 +6,7 @@ import AppDesc from "./components/AppDesc.tsx";
 import CountDown from "./sections/CountDown.tsx";
 import Email from "./sections/Email.tsx";
 import MainMockup from "./components/Mockup.tsx";
+import ScrollButton from "./components/ScrollButton.tsx";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
         <div className="center-col">
           <div className="mockup-section">
             <MainMockup />
+          </div>
+          <div className="scroll-btn-wrapper">
+            <ScrollButton />
           </div>
         </div>
         <div className="right-col">

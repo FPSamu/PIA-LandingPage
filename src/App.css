@@ -148,3 +148,65 @@
     gap: 4rem;
   }
 }
+
+.scroll-btn {
+  background: #4A90E2;
+  transition: background 0.2s;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px;
+  min-height: 48px;
+}
+.scroll-btn svg {
+  color: #fff;
+  transition: color 0.2s;
+  width: 24px !important;
+  height: 24px !important;
+}
+.scroll-btn:hover, .scroll-btn:focus {
+  background: #fff;
+}
+.scroll-btn:hover svg, .scroll-btn:focus svg {
+  color: #4A90E2;
+}
+
+/* Default: mobile/vertical view */
+.scroll-btn-wrapper {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+}
+.scroll-btn {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px;
+  min-height: 36px;
+}
+.scroll-arrow {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+@media (min-width: 900px) {
+  .scroll-btn-wrapper {
+    position: static;
+    margin: 2rem 0 0 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .scroll-btn {
+    width: 64px !important;
+    height: 64px !important;
+    min-width: 64px;
+    min-height: 64px;
+  }
+  .scroll-btn svg {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
