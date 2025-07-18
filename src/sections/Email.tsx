@@ -5,7 +5,7 @@ import SendEmailButton from "../components/SendEmailButton.tsx";
 const sectionStyle = {
   display: "flex",
   flexDirection: "column" as const,
-  alignItems: "center" as const,
+  alignItems: "stretch" as const,
   justifyContent: "center" as const,
   width: "100%",
   marginTop: "2rem",
@@ -14,10 +14,9 @@ const sectionStyle = {
 const fieldWrapperStyle = {
   display: "flex",
   flexDirection: "column" as const,
-  alignItems: "center" as const,
+  alignItems: "stretch" as const,
   gap: "1rem",
   width: "100%",
-  maxWidth: "400px",
 };
 
 const fullWidthStyle = {

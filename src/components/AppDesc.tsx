@@ -5,7 +5,7 @@ const descStyle = {
   fontFamily: "Roboto, sans-serif",
   fontWeight: 500,
   fontSize: "2rem",
-  textAlign: "center" as const,
+  // textAlign: "left" as const,
   margin: "1.5rem 0 0 0",
   padding: 0,
 };

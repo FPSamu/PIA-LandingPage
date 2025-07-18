@@ -5,7 +5,7 @@ import CountDownClock from "../components/CountDownClock.tsx";
 const sectionStyle = {
   display: "flex",
   flexDirection: "column" as const,
-  alignItems: "center" as const,
+  alignItems: "left" as const,
   justifyContent: "center" as const,
   width: "100%",
   marginTop: "2rem",

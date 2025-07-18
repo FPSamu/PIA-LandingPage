@@ -4,8 +4,8 @@ const labelStyle = {
   color: "#D3D8E0",
   fontFamily: "Roboto, sans-serif",
   fontWeight: 400,
-  fontSize: "1.25rem",
-  textAlign: "center" as const,
+  fontSize: "1.75rem",
+  textAlign: "left" as const,
   margin: "2rem 0 0 0",
   padding: 0,
 };

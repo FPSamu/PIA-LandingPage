@@ -5,7 +5,7 @@ const titleStyle = {
   fontFamily: "Poppins, sans-serif",
   fontWeight: 700,
   fontSize: "2.5rem",
-  textAlign: "center" as const,
+  // textAlign: "left" as const,
   margin: 0,
   padding: 0,
 };
