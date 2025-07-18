@@ -1,0 +1,5 @@
+.send-email-btn:hover {
+  background: #255a99;
+  box-shadow: 0 8px 32px 0 rgba(74, 144, 226, 0.35);
+  transform: translateY(-2px) scale(1.03);
+} 
