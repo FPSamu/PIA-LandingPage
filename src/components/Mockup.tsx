@@ -10,7 +10,11 @@ const mainMockup = {
 
 const ROTATION_RANGE = 20; // degrees
 
-function MainMockup() {
+interface MainMockupProps {
+  disableMouseFollow?: boolean;
+}
+
+function MainMockup({ disableMouseFollow = false }: MainMockupProps) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -21,6 +25,13 @@ function MainMockup() {
   const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
   useEffect(() => {
+    if (disableMouseFollow) {
+      // Set fixed left tilt when mouse following is disabled
+      x.set(0);
+      y.set(-15);
+      return;
+    }
+
     function handleMouseMove(e: MouseEvent) {
       if (!ref.current) return;
       const rect = ref.current.getBoundingClientRect();
@@ -38,7 +49,7 @@ function MainMockup() {
     }
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [x, y]);
+  }, [x, y, disableMouseFollow]);
 
   return (
     <motion.div

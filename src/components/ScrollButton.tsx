@@ -16,13 +16,18 @@ const buttonStyle = {
   padding: 0,
 };
 
-function ScrollButton() {
+interface ScrollButtonProps {
+  onClick?: () => void;
+}
+
+function ScrollButton({ onClick }: ScrollButtonProps) {
   return (
     <button
       type="button"
       style={buttonStyle}
       className="scroll-btn"
       aria-label="Scroll down"
+      onClick={onClick}
     >
       <FiArrowDown size={36} />
     </button>

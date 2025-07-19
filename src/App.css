@@ -210,3 +210,94 @@
     height: 36px !important;
   }
 }
+
+/* Initial state transitions */
+.left-col,
+.right-col,
+.scroll-btn-wrapper {
+  transition: opacity 0.5s ease-out;
+}
+
+.mockup-section {
+  transition: all 0.8s ease-out;
+}
+
+.mockup-section img {
+  transition: all 0.8s ease-out;
+}
+
+/* Scroll animation styles - Desktop only */
+@media (min-width: 900px) {
+  .main-content-3col.scrolled {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0;
+  }
+
+  .main-content-3col.scrolled .left-col,
+  .main-content-3col.scrolled .right-col,
+  .main-content-3col.scrolled .scroll-btn-wrapper {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-out;
+  }
+
+  .main-content-3col.scrolled .center-col {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transition: all 0.8s ease-out;
+  }
+
+  .main-content-3col.scrolled .mockup-section {
+    margin: 0;
+    transition: all 0.8s ease-out;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    transform: translateY(60vh) scale(1.5);
+  }
+
+  .main-content-3col.scrolled .mockup-section img {
+    width: 50% !important;
+    max-width: 500px;
+    transition: all 0.8s ease-out;
+  }
+
+  /* Second animation - move to right side */
+  .main-content-3col.second-animation .mockup-section {
+    transform: translateX(25vw) translateY(0) scale(1.25) rotateY(-15deg);
+    transition: all 1s ease-out;
+  }
+
+  .main-content-3col.second-animation .mockup-section img {
+    width: 50% !important;
+    max-width: 300px;
+    transition: all 1s ease-out;
+  }
+}
+
+/* Features Section */
+.features-section {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease-out;
+  position: absolute;
+  top: 45%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.features-section.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
