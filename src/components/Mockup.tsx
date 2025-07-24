@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from "react";
-import { motion, useSpring, useMotionValue, useMotionTemplate } from "framer-motion";
 import MainMockupImage from "../assets/IphoneMockup.png";
 
 const mainMockup = {
@@ -12,26 +11,30 @@ const ROTATION_RANGE = 20; // degrees
 
 interface MainMockupProps {
   disableMouseFollow?: boolean;
+  scrollProgress?: number; // 0 to 1
 }
 
-function MainMockup({ disableMouseFollow = false }: MainMockupProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const xSpring = useSpring(x, { stiffness: 50, damping: 20 });
-  const ySpring = useSpring(y, { stiffness: 50, damping: 20 });
-  const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
-
-  const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+function MainMockup({ disableMouseFollow = false, scrollProgress = 0 }: MainMockupProps) {
+  const ref = useRef(null);
+  // Interpolate transform based on scrollProgress
+  let transform = '';
+  // Increase final Y position for a lower mockup
+  const FINAL_Y = 100; // vh (was 60)
+  if (scrollProgress < 0.8) {
+    const tY = scrollProgress * FINAL_Y;
+    const scale = 1 + 0.5* scrollProgress;
+    transform = `translateY(${tY}vh) scale(${scale})`;
+  } else {
+    const p = (scrollProgress - 0.8) / 0.2; // 0 to 1
+    const tX = p * 25; // vw
+    const rotateY = -2 * p;
+    const scale = 1.2 * p;
+    transform = `translateY(${FINAL_Y}vh) translateX(${tX}vw) scale(${scale}) rotateY(${rotateY}deg)`;
+  }
 
   useEffect(() => {
-    if (disableMouseFollow) {
-      // Set fixed left tilt when mouse following is disabled
-      x.set(0);
-      y.set(-15);
-      return;
-    }
-
+    if (disableMouseFollow) return;
+    const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
     function handleMouseMove(e: MouseEvent) {
       if (!ref.current) return;
       const rect = ref.current.getBoundingClientRect();
@@ -41,18 +44,16 @@ function MainMockup({ disableMouseFollow = false }: MainMockupProps) {
       const centerY = rect.top + height / 2;
       const mouseX = e.clientX;
       const mouseY = e.clientY;
-      // Calculate rotation: relative to center of the mockup
       const rX = clamp(((mouseY - centerY) / (height / 2)) * -ROTATION_RANGE, -ROTATION_RANGE, ROTATION_RANGE);
       const rY = clamp(((mouseX - centerX) / (width / 2)) * ROTATION_RANGE, -ROTATION_RANGE, ROTATION_RANGE);
-      x.set(rX);
-      y.set(rY);
+      ref.current!.style.transform = `${transform} rotateX(${rX}deg) rotateY(${rY}deg)`;
     }
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [x, y, disableMouseFollow]);
+  }, [disableMouseFollow, transform]);
 
   return (
-    <motion.div
+    <div
       ref={ref}
       style={{
         perspective: 1000,
@@ -63,12 +64,12 @@ function MainMockup({ disableMouseFollow = false }: MainMockupProps) {
         minHeight: "250px",
       }}
     >
-      <motion.img
+      <img
         src={MainMockupImage}
         alt="Iphone mockup"
         style={{ ...mainMockup, transform, willChange: "transform" }}
       />
-    </motion.div>
+    </div>
   );
 }
 

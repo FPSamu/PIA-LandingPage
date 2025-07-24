@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import logo from "./large-logo.png";
 import Title from "./components/Title.tsx";
@@ -9,28 +9,40 @@ import MainMockup from "./components/Mockup.tsx";
 import ScrollButton from "./components/ScrollButton.tsx";
 import FeaturesHeader from "./sections/FeaturesHeader.tsx";
 import FeaturesOptions from "./sections/FeaturesOptions.tsx";
-import EmailRow from "./sections/EmailRow.tsx";
+import EmailRow from "./sections/EmailRow.tsx"
+import Footer from "./sections/Footer.tsx";
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isSecondAnimation, setIsSecondAnimation] = useState(false);
   const [showFeaturesHeader, setShowFeaturesHeader] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const scrollContainerRef = useRef(null);
 
   const handleScrollClick = () => {
-    setIsScrolled(true);
-    // Start second animation after first one completes
-    setTimeout(() => {
-      setIsSecondAnimation(true);
-    }, 800);
-    // Show features header after second animation completes
-    setTimeout(() => {
-      setShowFeaturesHeader(true);
-    }, 1800);
+    // Scroll to the target position for full animation
+    window.scrollTo({ top: 900, behavior: 'smooth' });
   };
 
+  useEffect(() => {
+    function onScroll() {
+      if (isScrolled) return;
+      const scrollY = window.scrollY;
+      const start = 0;
+      const end = 400;
+      let progress = (scrollY - start) / (end - start);
+      progress = Math.max(0, Math.min(1, progress));
+      setScrollProgress(progress);
+      if (progress === 1 && !showFeaturesHeader) {
+        setShowFeaturesHeader(true);
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isScrolled, showFeaturesHeader]);
+
   return (
-    <div className="app-background">
-      <div className={`main-content-3col ${isScrolled ? 'scrolled' : ''} ${isSecondAnimation ? 'second-animation' : ''}`}>
+    <div className="app-background" ref={scrollContainerRef}>
+      <div className="main-content-3col">
         <div className="left-col">
           <div className="title-section">
             <Title />
@@ -44,7 +56,10 @@ function App() {
         </div>
         <div className="center-col">
           <div className="mockup-section">
-            <MainMockup disableMouseFollow={isSecondAnimation} />
+            <MainMockup
+              disableMouseFollow={isScrolled || scrollProgress === 1}
+              scrollProgress={isScrolled ? 1 : scrollProgress}
+            />
           </div>
           <div className="scroll-btn-wrapper">
             <ScrollButton onClick={handleScrollClick} />
@@ -59,11 +74,15 @@ function App() {
           </div>
         </div>
       </div>
+      {!isScrolled && !showFeaturesHeader && (
+        <div style={{ height: '120vh', width: '100%' }} />
+      )}
       <div className={`features-section ${showFeaturesHeader ? 'visible' : ''}`}>
         <FeaturesHeader />
         <FeaturesOptions />
         <EmailRow />
       </div>
+      <Footer />
     </div>
   );
 }
