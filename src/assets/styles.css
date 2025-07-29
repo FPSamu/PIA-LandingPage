@@ -85,7 +85,7 @@
 
 
 @media (orientation: portrait) {
-    main {
+    /* main {
         opacity: 1;
         animation: makeInvisible 1s linear forwards;
         animation-timeline: scroll();
@@ -105,6 +105,18 @@
         animation: bgToWhite 1s linear forwards;
         animation-timeline: scroll();
         animation-range: contain 45% 80%;
+    } */
+
+    @media (orientation: portrait) {
+        main {
+            opacity: 1;
+            transition: opacity 1s linear;
+        }    
+
+        body {
+            background-color: #1A1F2E;
+            transition: background-color 1s linear;
+        }
     }
 
     #secondary {
