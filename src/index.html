@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>PIA - Personal Income Assistant</title>
+</head>
+<body class="bg-[#1A1F2E]">
+    <main class="relative container mx-auto px-6 py-12 main-content" id="hero">
+        <div class="grid lg:grid-cols-3 gap-12 lg:gap-8 items-center min-h-[80vh]">
+            <aside class="lg:col-span-1 space-y-8 animate-fade-in-left content-overlay" id="leftContent">
+                <div class="space-y-6">
+                    <h1 class="text-[#A3BFFA] [font-family:'Poppins'] font-bold text-4xl lg:text-5xl xl:text-6xl leading-tight">Master Your Money with AI</h1>
+                    <h2 class="text-[#D3D8E0] [font-family:'Roboto'] font-medium text-lg lg:text-xl leading-relaxed">Take charge of your finances with intelligent insights and effortless tracking.</h2>
+                </div>
+                <section class="flex justify-center" id="countdown">
+                    <div class="text-left">
+                        <p class="[font-family:'Roboto'] font-normal text-[#D3D8E0] text-2xl">🚀Launching starts in:</p>
+                        <div class="text-[#F5A623] [font-family:'Montserrat'] font-bold text-5xl" id="countdown-clock">
+                            <span class="ml-2" id="countdown-days">23</span><span class="mx-2">:</span><span id="countdown-hours">24</span><span class="mx-2">:</span><span class="mr-2" id="countdown-minutes">42</span><span class="font-normal text-2xl" id="countdown-seconds">: 35</span>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+            <center>
+                <div class="flex justify-center items-center animate-fade-in-up phone-container" id="phoneContainer">
+                    <div class="relative animate-float transition-transform duration-300 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[#4A90E2]/20 to-[#F5A623]/20 rounded-[3rem] blur-3xl transform scale-105" id="phoneGlow"></div>
+                        <img 
+                            src="./assets/IphoneMockup.png"
+                            alt="PIA App iPhone Mockup"
+                            class="relative w-[350px] h-auto rounded-[3rem] shadow-2xl border-8 border-gray-800 phone-image"
+                            id="phoneImage"
+                            onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'; this.style.width='350px'; this.style.height='600px'; this.alt='Phone Mockup Placeholder';"
+                        />
+                    </div>
+                </div>
+            </center>
+            <aside class="lg:col-span-1 space-y-8 animate-fade-in-right content-overlay justify-items-center" id="rightContent">
+                <img src="./assets/large-logo.png" alt="Business logo" onerror="this.style.display='none';">            
+                <div class="bg-[#2A2F42]/30 backdrop-blur-sm border border-[#3A4056] rounded-2xl p-8">
+                    <div class="text-center mb-6">
+                        <h3 class="text-[#A3BFFA] [font-family:'Poppins'] font-semibold text-xl mb-2">Join the Waitlist</h3>
+                        <p class="text-[#D3D8E0] [font-family:'Roboto'] text-sm">Be the first to experience the future of personal finance</p>
+                    </div>
+                    <form class="space-y-4" action="submit">
+                        <div class="relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#D3D8E0] w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l9 6 9-6M4 6h16a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                            </svg>
+                            <input class="w-full bg-[#2A2F42] border border-[#3A4056] text-[#D3D8E0] [font-family:'Roboto'] font-medium pl-12 pr-4 py-4 rounded-xl focus:outline-none focus:border-[#4A90E2] focus:ring-2 focus:ring-[#4A90E2]/20 transition-all duration-300 placeholder-[#D3D8E0]/60" type="email" placeholder="Enter your email" name="" id="">
+                        </div>
+                        <button class="w-full bg-[#4A90E2] text-white [font-family:'Montserrat'] font-medium py-4 px-6 rounded-xl hover:bg-[#4A90E2]/90 transition-all duration-300 flex items-center justify-center gap-2 group focus:outline-none focus:ring-2 focus:ring-[#4A90E2]/50 transform hover:scale-[1.02]">
+                            Get Early Access
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 ml-[4px]" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16m0 0l-6-6m6 6l-6 6" />
+                            </svg>
+                        </button>
+                    </form>
+                    <div class="mt-6 text-center">
+                        <p class="text-[#D3D8E0]/70 [font-family:'Roboto'] text-xs">
+                            No spam, ever. Unsubscribe anytime.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="flex space-y-[64px]" id="secondary">
+        <section class="ml-[160px] w-[50%]" data-aos="zoom-out-right">
+            <div class="space-y-8 text-center">
+                <div class="space-y-4">
+                    <h2 class="text-[#5A7DCC] [font-family:Poppins] font-bold text-4xl">Explore PIA's Power</h2>
+                    <h3 class="text-[#6E7F99] [font-family:'Roboto'] font-bold text-2xl">See how PIA simplifies your finances with AI-driven tools.</h3>
+                </div>
+                <nav class="flex justify-center">
+                    <ul class="flex space-x-8 [font-family:'Roboto'] font-semibold text-3xl">
+                        <li class="text-[#6D7B8C]">Insights</li>
+                        <li class="text-[#6D7B8C]">Transactions</li>
+                        <li class="text-[#6D7B8C]">Tips</li>
+                    </ul>
+                </nav>
+                <div>
+                    <p class="text-[#596A89] text-2xl [font-family:'Roboto'] font-medium">Gain a comprehensive view of your finances with PIA's real-time dashboard, where you can monitor your total balance, track income streams, and analyze expenses with ease. The AI-powered interface automatically updates your financial snapshot, offering a clear picture of your savings and spending patterns, all tailored to help you make informed decisions.</p>
+                </div>
+            </div>
+        </section>
+        <div class="w-[50%] flex justify-center" id="image" data-aos="zoom-out-left">
+            <img class="w-[400px] mr-[80px]" src="assets/transaction.png" alt="">
+        </div>
+    </div>
+    <footer></footer>
+</body>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="countdown.js"></script>
+<script>AOS.init();</script>
+</html>
