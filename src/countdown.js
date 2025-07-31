@@ -1,5 +1,5 @@
-const day = 31
-const month = 7
+const day = 8
+const month = 8
 const year = 2025
 
 const targetDate = new Date(year, month-1, day, 23, 59, 59);
