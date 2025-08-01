@@ -1,169 +1,481 @@
-@keyframes fade-in-left {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
+ /* Animaciones CSS */
+        @keyframes fade-in-left {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
 
-@keyframes fade-in-right {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
+        @keyframes fade-in-right {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
 
-@keyframes fade-in-up {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
-}
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
 
-.animate-fade-in-left {
-    animation: fade-in-left 1s ease-out;
-}
+        @keyframes slideIn {
+            from { width: 0%; opacity: 0; }
+            to { width: 60%; opacity: 1; }
+        }
 
-.animate-fade-in-right {
-    animation: fade-in-right 1s ease-out;
-}
+        .animate-fade-in-left { animation: fade-in-left 1s ease-out; }
+        .animate-fade-in-right { animation: fade-in-right 1s ease-out; }
+        .animate-fade-in-up { animation: fade-in-up 1s ease-out; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
 
-.animate-fade-in-up {
-    animation: fade-in-up 1s ease-out;
-}
+        /* Reset y estilos base */
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { overflow-x: hidden; margin: 0; padding: 0; }
 
-.animate-float {
-    animation: float 6s ease-in-out infinite;
-}
+        /* Contenedores principales */
+        .main-content {
+            width: 100%;
+            max-width: 100vw;
+            margin: 0 auto;
+        }
 
-#secondary {
-    overflow: hidden;
-}
+        #secondary {
+            width: 100%;
+            max-width: 100vw;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
 
-/* Estilos para móvil/portrait */
-@media (orientation: portrait) {
-    #secondary {
-        flex-direction: column;
-        width: 90%;
-        margin: 0 auto;
-        justify-content: center;
-        padding: 0 32px;
-    }
+        /* Estilos para tabs */
+        .tab-navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
 
-    #secondary section {
-        justify-self: center;
-        align-self: center;
-        width: 100%;
-        margin: 0;
-    }
+        .tab-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+        }
 
-    #secondary li {
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
-
-    #secondary p {
-        font-size: 1.1rem;
-    }
-
-    #secondary #image {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-    }
-
-    #secondary #image img {
-        margin: 0 auto;
-    }
-}
-
-/* Estilos para desktop/landscape */
-@media (orientation: landscape) {
-    main {
-        margin-bottom: 10vh;
-    }
-
-    #secondary {
-        justify-content: center;
-        align-items: center;
-    }
-
-    #secondary div p {
-        justify-self: center;
-        width: 80%;
-    }
-}
-
-/* Fallback para navegadores que soportan scroll-timeline nativo */
-@supports (animation-timeline: scroll()) {
-    @media (orientation: portrait) {
-        .use-native-scroll main {
-            opacity: 1;
-            animation: makeInvisible 1s linear forwards;
-            animation-timeline: scroll();
-            animation-range: contain 40% 70%;
-            margin-bottom: 70vh;
+        .tab-item {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 16px;
             text-align: center;
-        }    
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-        @keyframes makeInvisible {
-            to { 
-                opacity: 0; 
+        .tab-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .tab-item.active-tab {
+            color: #4A90E2 !important;
+        }
+
+        .tab-item.active-tab::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #4A90E2, #F5A623);
+            border-radius: 2px;
+            animation: slideIn 0.3s ease;
+        }
+
+        /* MOBILE PORTRAIT (320px - 767px) */
+        @media screen and (max-width: 767px) {
+            .main-content {
+                padding: 1rem;
+                min-height: 100vh;
+            }
+
+            .main-content .grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .main-content h1 {
+                font-size: 1.875rem !important;
+                line-height: 1.2;
+            }
+
+            .main-content h2 {
+                font-size: 1rem !important;
+            }
+
+            .phone-container img {
+                width: 280px !important;
+                height: auto;
+            }
+
+            .countdown-text {
+                font-size: 1.125rem !important;
+            }
+
+            .countdown-numbers {
+                font-size: 2rem !important;
+            }
+
+            /* Secondary section para móvil */
+            #secondary {
+                flex-direction: column;
+                padding: 2rem 1rem;
+                gap: 2rem;
+                align-items: center;
+            }
+
+            #secondary section {
+                width: 100% !important;
+                margin: 0 !important;
+                text-align: center;
+                max-width: none !important;
+                margin-left: 0 !important;
+            }
+
+            #secondary h2 {
+                font-size: 1.75rem !important;
+                margin-bottom: 1rem;
+            }
+
+            #secondary h3 {
+                font-size: 1.125rem !important;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Tabs para móvil - STACK VERTICAL */
+            .tab-navigation {
+                width: 100%;
+                margin: 1.5rem 0;
+            }
+
+            .tab-list {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                align-items: center;
+            }
+
+            .tab-item {
+                font-size: 1.25rem !important;
+                width: auto;
+                padding: 12px 24px;
+                min-width: 120px;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .tab-item.active-tab::after {
+                width: 80%;
+            }
+
+            #secondary .content-text {
+                font-size: 0.9rem !important;
+                line-height: 1.5;
+                margin: 1.5rem 0;
+                padding: 0 1rem;
+            }
+
+            /* Image section para móvil */
+            #image {
+                width: 100% !important;
+                display: flex;
+                justify-content: center;
+                margin: 0 !important;
+            }
+
+            #image img {
+                width: 100% !important;
+                max-width: 300px !important;
+                margin: 0 !important;
+                height: auto;
+            }
+
+            /* Footer para móvil */
+            footer .grid {
+                grid-template-columns: 1fr !important;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            footer .form-container {
+                max-width: 100%;
+            }
+
+            footer img {
+                width: 200px !important;
+                margin: 0 auto;
             }
         }
 
-        .use-native-scroll body {
-            background-color: #1A1F2E;
-            animation: bgToWhite 1s linear forwards;
-            animation-timeline: scroll();
-            animation-range: contain 45% 80%;
-        }
-
-        @keyframes bgToWhite {
-            from {
-                background-color: #1A1F2E;
+        /* TABLET PORTRAIT (768px - 1023px) */
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+            .main-content {
+                padding: 2rem;
             }
-            to {
-                background-color: #F5F6FA;
+
+            .main-content .grid {
+                grid-template-columns: 1fr !important;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .phone-container img {
+                width: 350px !important;
+            }
+
+            #secondary {
+                flex-direction: column;
+                padding: 4rem 2rem;
+                gap: 3rem;
+            }
+
+            #secondary section {
+                width: 100% !important;
+                margin: 0 !important;
+                max-width: 700px;
+                margin: 0 auto !important;
+                margin-left: 0 !important;
+            }
+
+            #secondary h2 {
+                font-size: 2.25rem !important;
+            }
+
+            #secondary h3 {
+                font-size: 1.375rem !important;
+            }
+
+            /* Tabs para tablet - HORIZONTAL */
+            .tab-list {
+                flex-direction: row;
+                gap: 2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .tab-item {
+                font-size: 1.5rem !important;
+                padding: 12px 20px;
+            }
+
+            #secondary .content-text {
+                font-size: 1.125rem !important;
+                line-height: 1.6;
+            }
+
+            #image {
+                width: 100% !important;
+                display: flex;
+                justify-content: center;
+            }
+
+            #image img {
+                width: 400px !important;
+                margin: 0 !important;
             }
         }
-    }
 
-    @media (orientation: landscape) {
-        .use-native-scroll main {
-            opacity: 1;
-            animation: makeInvisible 1s linear forwards;
-            animation-timeline: scroll();
-            animation-range: contain 0% 20%;
-            margin-bottom: 30vh;
+        /* DESKTOP SMALL (1024px - 1279px) */
+        @media screen and (min-width: 1024px) and (max-width: 1279px) {
+            .main-content {
+                padding: 3rem 2rem;
+            }
+
+            .main-content .grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 2rem;
+                align-items: center;
+            }
+
+            #secondary {
+                flex-direction: row;
+                padding: 5rem 2rem;
+                align-items: center;
+                justify-content: space-between;
+                gap: 2rem;
+            }
+
+            #secondary section {
+                width: 50% !important;
+                margin-left: 2rem !important;
+                text-align: left;
+            }
+
+            #secondary h2 {
+                font-size: 2.25rem !important;
+            }
+
+            .tab-list {
+                flex-direction: row;
+                gap: 1.5rem;
+                justify-content: flex-start;
+            }
+
+            .tab-navigation {
+                justify-content: flex-start;
+            }
+
+            .tab-item {
+                font-size: 1.25rem !important;
+            }
+
+            #secondary .content-text {
+                font-size: 1rem !important;
+                text-align: left;
+            }
+
+            #image {
+                width: 45% !important;
+                display: flex;
+                justify-content: center;
+            }
+
+            #image img {
+                width: 100% !important;
+                max-width: 350px !important;
+                margin: 0 !important;
+            }
         }
 
-        .use-native-scroll body {
-            background-color: #1A1F2E;
-            animation: bgToWhite 1s linear forwards;
-            animation-timeline: scroll();
-            animation-range: contain 0% 20%;
+        /* DESKTOP MEDIUM (1280px - 1439px) */
+        @media screen and (min-width: 1280px) and (max-width: 1439px) {
+            .main-content {
+                padding: 3rem;
+            }
+
+            #secondary {
+                padding: 6rem 3rem;
+                gap: 3rem;
+            }
+
+            #secondary section {
+                width: 50% !important;
+                margin-left: 4rem !important;
+            }
+
+            #secondary h2 {
+                font-size: 2.5rem !important;
+            }
+
+            .tab-item {
+                font-size: 1.5rem !important;
+            }
+
+            #secondary .content-text {
+                font-size: 1.25rem !important;
+            }
+
+            #image {
+                width: 50% !important;
+            }
+
+            #image img {
+                width: 100% !important;
+                max-width: 400px !important;
+            }
         }
-    }
-}
+
+        /* DESKTOP LARGE (1440px+) */
+        @media screen and (min-width: 1440px) {
+            .main-content {
+                padding: 4rem;
+                max-width: 1400px;
+            }
+
+            #secondary {
+                padding: 8rem 4rem;
+                max-width: 1400px;
+                margin: 0 auto;
+                gap: 4rem;
+            }
+
+            #secondary section {
+                margin-left: 6rem !important;
+            }
+
+            .tab-item {
+                font-size: 1.75rem !important;
+            }
+
+            #secondary .content-text {
+                font-size: 1.375rem !important;
+            }
+
+            #image img {
+                max-width: 450px !important;
+            }
+        }
+
+        /* Pantallas muy cortas (altura) */
+        @media screen and (max-height: 600px) and (orientation: landscape) {
+            .main-content {
+                min-height: auto;
+                padding: 1rem;
+            }
+
+            .main-content .grid {
+                gap: 1rem;
+            }
+
+            .phone-container img {
+                width: 200px !important;
+            }
+
+            #secondary {
+                padding: 2rem;
+            }
+        }
+
+        /* Mejoras adicionales */
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        @media screen and (max-width: 767px) {
+            .form-container {
+                max-width: 100%;
+            }
+
+            .form-container input,
+            .form-container button {
+                font-size: 16px; /* Previene zoom en iOS */
+            }
+        }
+
+        /* Hover effects solo para dispositivos no táctiles */
+        @media (hover: hover) and (pointer: fine) {
+            .tab-item:hover {
+                transform: translateY(-2px);
+                color: #7BA3E8 !important;
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .tab-item:hover {
+                transform: none;
+            }
+        }
+
+        /* Transiciones suaves */
+        #secondary .content-text,
+        #secondary #image img {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
