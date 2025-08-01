@@ -56,74 +56,14 @@
     animation: float 6s ease-in-out infinite;
 }
 
-/* Keyframe animations */
-@keyframes phoneScale {
-    from { transform: scale(1); }
-    to { transform: scale(var(--phone-scale)); }
-}
-
-@keyframes glowScale {
-    from { transform: scale(1.05); }
-    to { transform: scale(var(--glow-scale)); }
-}
-
-@keyframes elementFade {
-    from { opacity: 1; }
-    to { opacity: var(--element-opacity); }
-}
-
-@keyframes overlayShow {
-    from { opacity: 0; }
-    to { opacity: var(--overlay-opacity); }
-}
-
-@keyframes backgroundTransition {
-    from { background-color: #1A1F2E; }
-    to { background-color: rgb(var(--bg-r), var(--bg-g), var(--bg-b)); }
-}
-
 #secondary {
     overflow: hidden;
 }
 
+/* Estilos para móvil/portrait */
 @media (orientation: portrait) {
-    /* main {
-        opacity: 1;
-        animation: makeInvisible 1s linear forwards;
-        animation-timeline: scroll();
-        animation-range: contain 40% 70%;
-        margin-bottom: 70vh;
-        text-align: center;
-    }    
-
-    @keyframes makeInvisible {
-        to { 
-            opacity: 0; 
-        }
-    }
-
-    body {
-        background-color: #1A1F2E;
-        animation: bgToWhite 1s linear forwards;
-        animation-timeline: scroll();
-        animation-range: contain 45% 80%;
-    } */
-
-    @media (orientation: portrait) {
-        main {
-            opacity: 1;
-            transition: opacity 1s linear;
-        }    
-
-        body {
-            background-color: #1A1F2E;
-            transition: background-color 1s linear;
-        }
-    }
-
     #secondary {
         flex-direction: column;
-        /* margin: 0 40px; */
         width: 90%;
         margin: 0 auto;
         justify-content: center;
@@ -142,7 +82,7 @@
         cursor: pointer;
     }
 
-    #secondary p{
+    #secondary p {
         font-size: 1.1rem;
     }
 
@@ -158,36 +98,10 @@
     }
 }
 
-@keyframes bgToWhite {
-    from {
-        background-color: #1A1F2E;
-    }
-    to {
-        background-color: #F5F6FA;
-    }
-}
-
-
+/* Estilos para desktop/landscape */
 @media (orientation: landscape) {
     main {
-        opacity: 1;
-        animation: makeInvisible 1s linear forwards;
-        animation-timeline: scroll();
-        animation-range: contain 0% 20%;
-        margin-bottom: 30vh;
-    }
-
-    @keyframes makeInvisible {
-        to { 
-            opacity: 0; 
-        }
-    }
-
-    body {
-        background-color: #1A1F2E;
-        animation: bgToWhite 1s linear forwards;
-        animation-timeline: scroll();
-        animation-range: contain 0% 20%;
+        margin-bottom: 10vh;
     }
 
     #secondary {
@@ -198,5 +112,58 @@
     #secondary div p {
         justify-self: center;
         width: 80%;
+    }
+}
+
+/* Fallback para navegadores que soportan scroll-timeline nativo */
+@supports (animation-timeline: scroll()) {
+    @media (orientation: portrait) {
+        .use-native-scroll main {
+            opacity: 1;
+            animation: makeInvisible 1s linear forwards;
+            animation-timeline: scroll();
+            animation-range: contain 40% 70%;
+            margin-bottom: 70vh;
+            text-align: center;
+        }    
+
+        @keyframes makeInvisible {
+            to { 
+                opacity: 0; 
+            }
+        }
+
+        .use-native-scroll body {
+            background-color: #1A1F2E;
+            animation: bgToWhite 1s linear forwards;
+            animation-timeline: scroll();
+            animation-range: contain 45% 80%;
+        }
+
+        @keyframes bgToWhite {
+            from {
+                background-color: #1A1F2E;
+            }
+            to {
+                background-color: #F5F6FA;
+            }
+        }
+    }
+
+    @media (orientation: landscape) {
+        .use-native-scroll main {
+            opacity: 1;
+            animation: makeInvisible 1s linear forwards;
+            animation-timeline: scroll();
+            animation-range: contain 0% 20%;
+            margin-bottom: 30vh;
+        }
+
+        .use-native-scroll body {
+            background-color: #1A1F2E;
+            animation: bgToWhite 1s linear forwards;
+            animation-timeline: scroll();
+            animation-range: contain 0% 20%;
+        }
     }
 }
