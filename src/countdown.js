@@ -1,4 +1,4 @@
-const day = 15
+const day = 18
 const month = 8
 const year = 2025
 
