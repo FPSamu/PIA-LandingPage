@@ -1,4 +1,4 @@
-const day = 18
+const day = 22
 const month = 8
 const year = 2025
 
@@ -28,4 +28,5 @@ function updateCountdown() {
 }
 
 updateCountdown();
+
 setInterval(updateCountdown, 1000);
